@@ -17,3 +17,4 @@ computedTest = new Vue({
     }
 
 })
+

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+
+    </style>
+
+</head>
+<body>
+
+<div class="static" v-bind:class="{ active: isActive}">Show simple class example</div>
+<br/>
+
+<div class="static2" v-bind:class="{ active: isActive, 'text-danger': hasError }">Second Object example</div>
+
+<div id="classObject1">
+    <div v-bind:class="[isActive ? successText : dangerText]">Hello Class World</div>
+    <button v-on:click="toggleColor">Toggle</button>
+</div>
+
+<div id="arr-example" v-bind:class="[activeClass, errorClass]">Array example</div>
+
+<script>
+
+
+    vm1 = new Vue({
+        el: '.static',
+        data: {
+            isActive: true
+        }
+    })
+
+    vm2 = new Vue({
+        el: '.static2',
+        data: {
+            isActive: true,
+            hasError: true
+        }
+    })
+
+    vm3 = new Vue({
+        el: '#classObject1',
+        data: {
+            isActive: true,
+            successText: 'text-success',
+            dangerText: 'text-danger'
+
+        },
+
+        methods: {
+            toggleColor: function () {
+                this.isActive = !this.isActive;
+                console.log(this.isActive);
+            }
+        }
+
+    })
+
+
+    vm4 = new Vue({
+        el: '#arr-example',
+        data: {
+            activeClass: 'active',
+            errorClass: 'text-success'
+        }
+    })
+</script>
+
+</body>
+</html>
