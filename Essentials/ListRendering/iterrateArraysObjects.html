@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+</head>
+<body>
+
+<div id="example-1">
+    <ul>
+        <li v-for=" (item, index) in items" :key="item.name">
+            {{index}} {{item.name}} - {{item.value}}
+        </li>
+    </ul>
+    <button class="btn btn-primary" v-on:click="sortData">Sort</button>
+</div>
+
+<ul id="iterate-properties-object">
+    <li v-for="(value, name, index) in obj">
+        {{ index + 1 }}. {{ name }}: {{ value }}
+    </li>
+</ul>
+
+<div id="filter-numbers">
+    <!--<ul>
+        <li v-for="n in evenNumbers">{{ n }}</li>
+    </ul> -->
+    <ul>
+        <li>{{numbers}}</li>
+    </ul>
+    <button class="btn btn-primary" v-on:click="evenNumbers">Evens</button>
+    <button class="btn btn-primary" v-on:click="oddNumbers">Odds</button>
+</div>
+
+<script>
+    vm1 = new Vue({
+        el: '#example-1',
+        data: {
+            items: [
+                {name: 'Edward', value: 21},
+                {name: 'Sharpe', value: 37},
+                {name: 'And', value: 45},
+                {name: 'The', value: -12},
+                {name: 'Magnetic', value: 13},
+                {name: 'Zeros', value: 37}
+            ]
+        },
+
+        methods: {
+
+            sortData: function () {
+
+
+                this.items.sort(function (a, b) {
+                    return a.value - b.value;
+                });
+
+                // vm1.items.sort(function (a, b) {
+                //    return a.message - b.message;
+                //  });
+            },
+
+        }
+
+    })
+
+    vm1.items.push({name: 'John Doe', value: 30})
+
+
+    vm2 = new Vue({
+        el: '#iterate-properties-object',
+
+        data: {
+            obj: {
+                title: 'How to do lists in Vue',
+                author: 'Jane Doe',
+                publishedAt: '2016-04-10'
+            }
+        },
+
+
+    })
+
+    vm3 = new Vue({
+        el: '#filter-numbers',
+        data: {
+            numbers: [1, 2, 3, 4, 5]
+        },
+
+        methods: {
+            evenNumbers: function () {
+
+                this.numbers = this.numbers.filter(number => {
+                    return number % 2 === 0;
+                })
+            },
+
+            oddNumbers: function () {
+
+                this.numbers = this.numbers.filter(number => {
+                    return number % 2 !== 0;
+                })
+            }
+        }
+
+
+    })
+
+</script>
+
+</body>
+</html>
