@@ -7,7 +7,8 @@ Vue.component('blog-post', {
 
         age: {
             type: Number,
-            required: true
+            required: true,
+           // default: 22  // can have default value
         },
 
         year: {
@@ -31,3 +32,4 @@ Vue.component('blog-post', {
      </div>
     `
 })
+
